@@ -133,7 +133,7 @@ namespace LibraryManagement
         // Add Book
         static void AddBook(List<Book> books, List<Author> authors)
         {
-            Console.WriteLine("Adding a new book:\n");
+            
 
             Console.Write("Enter the book title: ");
             string title = Console.ReadLine();
@@ -174,6 +174,7 @@ namespace LibraryManagement
             books.Add(book);
 
             Console.WriteLine("\nBook added successfully!");
+            Console.WriteLine();
 
 
         }
@@ -183,7 +184,7 @@ namespace LibraryManagement
         // Update Book
         static void UpdateBook(List<Book> books)
         {
-            Console.WriteLine("Updating a book:\n");
+            
 
             Console.Write("Enter the title of the book to update: ");
             string title = Console.ReadLine();
@@ -213,6 +214,7 @@ namespace LibraryManagement
                 }
 
                 Console.WriteLine("\nBook updated successfully!");
+                Console.WriteLine();
             }
             else
             {
@@ -225,7 +227,7 @@ namespace LibraryManagement
         // Delete Book
         static void DeleteBook(List<Book> books)
         {
-            Console.WriteLine("Deleting a book:\n");
+           
 
             Console.Write("Enter the title of the book to delete: ");
             string title = Console.ReadLine();
@@ -248,7 +250,11 @@ namespace LibraryManagement
         // List all Books
         static void ListAllBooks(List<Book> books)
         {
-            Console.WriteLine("Listing all books:\n");
+            if (books.Count() == 0)
+            {
+                Console.WriteLine("No books available in library..!");
+                Console.WriteLine();
+            }
 
             foreach (var book in books)
             {
@@ -280,6 +286,7 @@ namespace LibraryManagement
             Author author = new Author { FirstName = firstName, LastName = lastName, DateOfBirth = dateOfBirth };
             authors.Add(author);
             Console.WriteLine("author added succesfuly..!");
+            Console.WriteLine();
         }
 
 
@@ -345,12 +352,16 @@ namespace LibraryManagement
         // Display All Author
         static void DisplayAllAuthors(List<Author> authors)
         {
-            Console.WriteLine("Displaying all authors:\n");
+            if (authors.Count() == 0)
+            {
+                Console.WriteLine("No authors available in library..!");
+            }
 
             foreach (var author in authors)
             {
                 Console.WriteLine("Author: {0} {1}", author.FirstName, author.LastName);
                 Console.WriteLine("Date of Birth: {0}", author.DateOfBirth);
+                Console.WriteLine();
                 
             }
         }
@@ -369,6 +380,7 @@ namespace LibraryManagement
             Borrower borrower = new Borrower { FirstName = firstName, LastName = lastName, Email = email, PhoneNumber = phoneNumber };
             borrowers.Add(borrower);
             Console.WriteLine("borrower added succesfuly..!");
+            Console.WriteLine();
         }
         //update borrower
         static void UpdateBorrower()
@@ -443,7 +455,12 @@ namespace LibraryManagement
         // Display All Borrower
         static void DisplayAllBorrowers()
         {
-            Console.WriteLine("Displaying all borrowers:\n");
+            
+
+            if (borrowers.Count == 0)
+            {
+                Console.WriteLine("No borrowers available in library..!");
+            }
 
             foreach (var borrower in borrowers)
             {
@@ -451,8 +468,7 @@ namespace LibraryManagement
                 Console.WriteLine("Email: {0}", borrower.Email);
                 Console.WriteLine("Phone Number: {0}", borrower.PhoneNumber);
                 Console.ReadLine();
-                Console.ReadLine();
-                Console.ReadLine();
+               
             }
         }
 
@@ -505,7 +521,7 @@ namespace LibraryManagement
 
             static void SearchBooks(List<Book> books, List<Author> authors, List<Borrower> borrowers)
             {
-                Console.WriteLine("Searching for books:\n");
+               
 
                 Console.Write("Enter the search keyword: ");
                 string keyword = Console.ReadLine();
@@ -545,8 +561,7 @@ namespace LibraryManagement
 
             static void FilterBooksByStatus()
             {
-                Console.WriteLine("Filtering books by status:\n");
-
+               
                 Console.Write("Enter the book availability status (available or not available): ");
                 string statusInput = Console.ReadLine();
 
@@ -556,11 +571,17 @@ namespace LibraryManagement
 
                 Console.WriteLine("\nFiltered books:\n");
 
+                if(books == null)
+            {
+                Console.WriteLine("No Books Available");
+            }
+
                 foreach (var book in filteredBooks)
                 {
                     Console.WriteLine("Title: {0}", book.Title);
                     Console.WriteLine("Author: {0} {1}", book.Author.FirstName, book.Author.LastName);
                     Console.WriteLine("Publication Year: {0}", book.PublicationYear);
+                    Console.WriteLine();
 
                 }
             }
